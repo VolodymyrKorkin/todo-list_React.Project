@@ -1,2 +1,2 @@
-ToDo-list application
+Todo Application
 -----
