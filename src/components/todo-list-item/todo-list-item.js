@@ -1,70 +1,80 @@
-import React from 'react'; 
-import { Component } from 'react'; /* {Component} === React.Component */
+import React from "react";
+import { Component } from "react"; /* {Component} === React.Component */
 
-import './todo-list-item.css';
+import "./todo-list-item.css";
 
 // CLASS
-export default class TodoListItem extends Component { /* {Component} === React.Component */
+export default class TodoListItem extends Component {
+  /* {Component} === React.Component */
 
-  state = {
-    done: false,
-    important: false
-  };
+  // now state not used <= before was used locally, may delete
+  // state = {
+  //   done: false,
+  //   important: false,
+  // };
 
-  onLabelClick = () => {
-    this.setState( (state) => {
-      return {
-        done: !state.done
-      };
-    });
-  };
+  // now managed from App.js <= before was local, may delete
+  // onLabelClick = () => {
+  //   this.setState((state) => {
+  //     return {
+  //       done: !state.done,
+  //     };
+  //   });
+  // };
 
-  onMarkImportant = () => {
-    this.setState(({ important }) => {
-      return {
-        important: !important
-      }
-    });
-  };
+  // now managed from App.js <= before was local, may delete
+  // onMarkImportant = () => {
+  //   this.setState(({ important }) => {
+  //     return {
+  //       important: !important,
+  //     };
+  //   });
+  // };
 
   render() {
+    const {
+      label,
+      onDeleted,
+      onToggleImportant,
+      onToggleDone,
+      important,
+      done,
+    } = this.props;
 
-    const { label, onDeleted } = this.props;
-    const { done, important } = this.state;
-
-    let classNames = 'todo-list-item';
+    let classNames = "todo-list-item";
     if (done) {
-      classNames += ' done';
-    };
+      classNames += " done";
+    }
 
     if (important) {
-      classNames += ' important';
-    };
-  
+      classNames += " important";
+    }
+
     return (
-      <span className= { classNames }>
-        <span
-          className="todo-list-item-label"
-          onClick = {this.onLabelClick} >
+      <span className={classNames}>
+        <span className="todo-list-item-label" onClick={onToggleDone}>
           {label}
         </span>
-  
-        <button type="button"
-                className="btn btn-outline-success btn-sm float-right"
-                onClick={this.onMarkImportant}>
+
+        <button
+          type="button"
+          className="btn btn-outline-success btn-sm float-right"
+          onClick={onToggleImportant}
+        >
           <i className="fa fa-exclamation" />
         </button>
-  
-        <button type="button"
-                className="btn btn-outline-danger btn-sm float-right"
-                onClick={onDeleted}>
+
+        <button
+          type="button"
+          className="btn btn-outline-danger btn-sm float-right"
+          onClick={onDeleted}
+        >
           <i className="fa fa-trash-o" />
         </button>
       </span>
     );
-  };
-
-};
+  }
+}
 
 //  FUNCTION
 // const TodoListItem = ({ label, important = false }) => {
