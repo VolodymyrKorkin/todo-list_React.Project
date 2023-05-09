@@ -16,6 +16,11 @@ export default class ItemAddForm extends Component {
   onSubmit = (event) => {
     event.preventDefault(); // cancel default behavior (reloading page after sending data to server)
     this.props.onItemAdded(this.state.label);
+    // clean input field after submit
+    this.setState({
+      label: "",
+    });
+    //
   };
 
   render() {
@@ -26,6 +31,7 @@ export default class ItemAddForm extends Component {
           className="form-control"
           onChange={this.onLabelChange}
           placeholder="What needs to be done"
+          value={this.state.label} // CONTROLLED ELEMENT (takes the value of element from the state)
         />
         <button className="btn btn-outline-secondary">Add Item</button>
       </form>
